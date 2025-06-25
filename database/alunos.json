@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "nome": "Alice Souza",
+    "curso": "Engenharia de Computação",
+    "ira": 8.5
+  },
+  {
+    "id": "2",
+    "nome": "Bruno Lima",
+    "curso": "Sistemas de Informação",
+    "ira": 10
+  },
+  {
+    "id": "1750892528303",
+    "nome": "matheus",
+    "curso": "si",
+    "ira": 4
+  }
+]

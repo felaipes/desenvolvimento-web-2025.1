@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Alunos</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      margin-right: 4px;
+    }
+
+    .highlight {
+      background-color: #fff8b3;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerenciar Alunos</h1>
+
+  <h2>Adicionar/Editar Aluno</h2>
+  <form id="form-aluno">
+    <input type="hidden" id="aluno-id">
+    <label>Nome: <input type="text" id="nome" required></label><br><br>
+    <label>Curso: <input type="text" id="curso" required></label><br><br>
+    <label>IRA: <input type="number" id="ira" step="0.01" required></label><br><br>
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="limparFormulario()">Cancelar</button>
+  </form>
+
+  <h2>Lista de Alunos</h2>
+  <table id="tabela-alunos">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Curso</th>
+        <th>IRA</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function carregarAlunos() {
+      const response = await fetch('/api/alunos');
+      const alunos = await response.json();
+      const tbody = document.querySelector('#tabela-alunos tbody');
+      tbody.innerHTML = '';
+
+      if (alunos.length === 0) return;
+
+      const maiorIRA = Math.max(...alunos.map(a => a.ira));
+
+      alunos.forEach(aluno => {
+        const tr = document.createElement('tr');
+        if (aluno.ira === maiorIRA) {
+          tr.classList.add('highlight');
+        }
+        tr.innerHTML = `
+          <td>${aluno.nome}</td>
+          <td>${aluno.curso}</td>
+          <td>${aluno.ira.toFixed(2)}</td>
+          <td>
+            <button onclick="preencherFormulario('${aluno.id}', '${aluno.nome}', '${aluno.curso}', ${aluno.ira})">Editar</button>
+            <button onclick="excluirAluno('${aluno.id}')">Excluir</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function criarOuEditarAluno(event) {
+      event.preventDefault();
+      const id = document.getElementById('aluno-id').value;
+      const aluno = {
+        nome: document.getElementById('nome').value,
+        curso: document.getElementById('curso').value,
+        ira: parseFloat(document.getElementById('ira').value)
+      };
+
+      const url = id ? '/api/alunos/' + id : '/api/alunos';
+      const method = id ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(aluno)
+      });
+
+      if (response.ok) {
+        limparFormulario();
+        await carregarAlunos();
+      } else {
+        alert("Erro ao salvar aluno.");
+      }
+    }
+
+    async function excluirAluno(id) {
+      const response = await fetch('/api/alunos/' + id, { method: 'DELETE' });
+      if (response.ok) carregarAlunos();
+      else alert("Erro ao excluir aluno.");
+    }
+
+    function preencherFormulario(id, nome, curso, ira) {
+      document.getElementById('aluno-id').value = id;
+      document.getElementById('nome').value = nome;
+      document.getElementById('curso').value = curso;
+      document.getElementById('ira').value = ira;
+    }
+
+    function limparFormulario() {
+      document.getElementById('form-aluno').reset();
+      document.getElementById('aluno-id').value = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('form-aluno').addEventListener('submit', criarOuEditarAluno);
+      carregarAlunos();
+    });
+  </script>
+</body>
+</html>
