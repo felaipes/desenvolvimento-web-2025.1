@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Produtos</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    .acima-media {
+      background-color: #d1e7dd;
+    }
+    .mais-caro {
+      background-color: #ffc107;
+    }
+    .mais-barato {
+      background-color: #f8d7da;
+    }
+    .erro {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lista de Produtos</h1>
+  <div id="resultado"></div>
+
+  <script>
+    function obterProdutos() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const numero = Math.floor(Math.random() * 100);
+          if (numero % 2 === 0) {
+            const produtos = Array.from({ length: 10 }, (_, i) => ({
+              id: i + 1,
+              nome: `Produto ${i + 1}`,
+              tipo: ["Eletrônico", "Roupas", "Alimento", "Limpeza"][i % 4],
+              preco: parseFloat((Math.random() * 100 + 10).toFixed(2))
+            }));
+            resolve(produtos);
+          } else {
+            reject({ res: "ERROR", msg: "ERRO NO SISTEMA" });
+          }
+        }, 4000);
+      });
+    }
+
+    async function carregarProdutos() {
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "<p>Aguarde... carregando produtos.</p>";
+
+      try {
+        const produtos = await obterProdutos();
+
+        const media = produtos.reduce((acc, p) => acc + p.preco, 0) / produtos.length;
+        const maisCaro = Math.max(...produtos.map(p => p.preco));
+        const maisBarato = Math.min(...produtos.map(p => p.preco));
+
+        let html = "<table>";
+        html += "<thead><tr><th>ID</th><th>Nome</th><th>Tipo</th><th>Preço</th></tr></thead><tbody>";
+
+        produtos.forEach(p => {
+          let classe = "";
+          if (p.preco > media) classe += "acima-media ";
+          if (p.preco === maisCaro) classe += "mais-caro ";
+          if (p.preco === maisBarato) classe += "mais-barato ";
+
+          html += `<tr class="${classe.trim()}">
+                    <td>${p.id}</td>
+                    <td>${p.nome}</td>
+                    <td>${p.tipo}</td>
+                    <td>R$ ${p.preco.toFixed(2)}</td>
+                  </tr>`;
+        });
+
+        html += "</tbody></table>";
+        html += `<p><strong>Média:</strong> R$ ${media.toFixed(2)}</p>`;
+
+        resultadoDiv.innerHTML = html;
+      } catch (erro) {
+        resultadoDiv.innerHTML = `<p class="erro">${erro.msg}</p>`;
+      }
+    }
+
+    carregarProdutos();
+  </script>
+
+</body>
+</html>
