@@ -8,93 +8,15 @@ import './style.css';
 import logo from './assets/logo.png';
 
 // --- Importando os componentes de cada página ---
-// (Assumindo que eles existem na pasta 'pages')
+// (Certifique-se que os caminhos para os arquivos estão corretos)
 import Home from './pages/Home';
- import Sobre from './pages/Sobre';
- import Servicos from './pages/Servicos';
- import Empresa from './pages/Empresa';
- import Noticias from './pages/Noticias';
- import Certificados from './pages/Certificados';
- import Localizacao from './pages/Localizacao';
- import Contato from './pages/Contato';
-
-
-// --- Componente de Animação para Scroll (Pode ser movido para um arquivo próprio) ---
-export const FadeInSection = ({ children }) => {
-  const [isVisible, setVisible] = React.useState(false);
-  const domRef = React.useRef();
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(domRef.current);
-        }
-      });
-    });
-
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
-  }, []);
-
-  return (
-    <div
-      className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
-      ref={domRef}
-    >
-      {children}
-    </div>
-  );
-};
-
-
-// --- Placeholders para as páginas (substitua pelos seus imports reais) ---
-const Home = () => (
-  <div className="home-container">
-    <FadeInSection>
-      <div className="home-texto">
-        <h1>Soluções que Impulsionam o seu Negócio</h1>
-        <p>Na <strong>Muniz Assessoria</strong>, transformamos desafios em oportunidades com estratégias contábeis e empresariais personalizadas.</p>
-        <p>Vamos crescer juntos?</p>
-      </div>
-    </FadeInSection>
-  </div>
-);
-const Sobre = () => (
-    <FadeInSection>
-        <section className="sobre-nos">
-            <div className="sobre-container">
-                <img src="https://placehold.co/400x500/001f4e/ffffff?text=Muniz" alt="Equipe Muniz Assessoria" className="sobre-imagem" />
-                <div className="sobre-texto">
-                    <h3>Quem Somos</h3>
-                    <h1>Excelência e Confiança</h1>
-                    <p>Com anos de experiência, nossa missão é fornecer um serviço de excelência, pautado pela ética e compromisso.</p>
-                    <ul>
-                        <li>Consultoria Contábil e Fiscal</li>
-                        <li>Planejamento Tributário</li>
-                        <li>Abertura de Empresas</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </FadeInSection>
-);
-const Certificados = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Certificados</h1></FadeInSection></div>;
-const Servicos = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Serviços</h1></FadeInSection></div>;
-const Empresa = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página da Empresa</h1></FadeInSection></div>;
-const Noticias = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Notícias</h1></FadeInSection></div>;
-const Localizacao = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Localização</h1></FadeInSection></div>;
-const Contato = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Contato</h1></FadeInSection></div>;
-
+import Sobre from './pages/Sobre';
+import Servicos from './pages/Servicos';
+import Empresa from './pages/Empresa';
+import Noticias from './pages/Noticias';
+import Certificados from './pages/Certificados';
+import Localizacao from './pages/Localizacao';
+import Contato from './pages/Contato';
 
 // --- Componente que gerencia as rotas e transições ---
 const AnimatedRoutes = () => {
