@@ -10,6 +10,8 @@ import Empresa from './pages/Empresa'
 import Localizacao from './pages/Localizacao'
 import Contato from './pages/Contato'
 import logo from './assets/logo.png'
+import './style.css'
+
 
 export default function App() {
   return (
@@ -22,7 +24,8 @@ export default function App() {
           gap: '1rem',
           color: 'white',
           backdropFilter: 'blur(6px)',
-          WebkitBackdropFilter: 'blur(6px)'
+          WebkitBackdropFilter: 'blur(6px)',
+          margin: '0px',
 }}>
 
         <img src={logo} alt="Logo Muniz" style={{ height: '50px' }} />
@@ -54,7 +57,11 @@ export default function App() {
   color: 'white',
   padding: '1rem',
   textAlign: 'center',
-  marginTop: '2rem'
+  marginTop: '2rem',
+  marginBottom: '0',
+  position: 'fixed',
+  bottom: '0',
+  width: '100%',
 }}>
   <p>© Muniz Assessoria Empresarial</p>
   <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', fontSize: '24px' }}>
