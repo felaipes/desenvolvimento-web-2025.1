@@ -55,7 +55,7 @@ export default function App() {
           <Link to="/sobre">Sobre</Link>
           <Link to="/servicos">Serviços</Link>
           <Link to="/empresa">Empresa</Link>
-          <Link to="/noticias">Noticias</Link>
+          <Link to="/noticias">Cotações</Link>
           <Link to="/certificados">Certificados</Link>
           <Link to="/localizacao">Localização</Link>
           <Link to="/contato">Contato</Link>
