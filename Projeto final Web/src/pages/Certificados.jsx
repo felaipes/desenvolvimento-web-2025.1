@@ -35,6 +35,5 @@ export default function Certificados() {
                 </form>
             </div>
         </div>
-
  );
 }
