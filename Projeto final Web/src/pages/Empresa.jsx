@@ -44,16 +44,16 @@ export default function Empresa() {
         <div className="empresa-container">
           <h2>Conheça a Nossa Empresa</h2>
           <p className="empresa-intro">
-            A Muniz Contabilidade é uma empresa especializada em soluções contábeis para pequenos negócios, com o objetivo de proporcionar crescimento e segurança financeira aos seus clientes. Formada por uma equipe de profissionais altamente qualificados e comprometidos, a Muniz Contabilidade busca oferecer um atendimento personalizado, alinhado às necessidades de cada empreendedor.
+              A Muniz Contabilidade é uma empresa especializada em soluções contábeis para pequenos negócios, com o objetivo de proporcionar crescimento e segurança financeira aos seus clientes. Formada por uma equipe de profissionais altamente qualificados e comprometidos, a Muniz Contabilidade busca oferecer um atendimento personalizado, alinhado às necessidades de cada empreendedor.
           </p>
           <p>
-            Com um atendimento atento e cuidadoso, a empresa combina o conhecimento técnico com o uso de tecnologia de ponta, garantindo processos ágeis, precisos e seguros. Sabemos que administrar um negócio envolve diversos desafios, e é por isso que nos dedicamos a cuidar de toda a parte contábil, permitindo que você se concentre no que realmente importa: o crescimento da sua empresa.
+                 Com um atendimento atento e cuidadoso, a empresa combina o conhecimento técnico com o uso de tecnologia de ponta, garantindo processos ágeis, precisos e seguros. Sabemos que administrar um negócio envolve diversos desafios, e é por isso que nos dedicamos a cuidar de toda a parte contábil, permitindo que você se concentre no que realmente importa: o crescimento da sua empresa.
           </p>
           <p>
-            Nosso compromisso é ser mais do que um prestador de serviços contábeis – queremos ser parceiros na jornada do seu negócio, ajudando a otimizar resultados, reduzir custos e garantir que você esteja sempre em conformidade com a legislação vigente.
+                 Nosso compromisso é ser mais do que um prestador de serviços contábeis – queremos ser parceiros na jornada do seu negócio, ajudando a otimizar resultados, reduzir custos e garantir que você esteja sempre em conformidade com a legislação vigente.
           </p>
           <p>
-            Na Muniz Contabilidade, o sucesso do seu negócio é a nossa missão!
+                 Na Muniz Contabilidade, o sucesso do seu negócio é a nossa missão!
           </p>
 
           <div className="mvv-section">
