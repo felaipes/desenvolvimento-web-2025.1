@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-// O componente de animação foi movido para cá para resolver o erro de importação.
 const FadeInSection = ({ children }) => {
   const [isVisible, setVisible] = React.useState(false);
   const domRef = React.useRef();
@@ -37,7 +36,6 @@ const FadeInSection = ({ children }) => {
   );
 };
 
-
 export default function Noticias() {
   const [taxas, setTaxas] = useState([]);
   const [moedas, setMoedas] = useState({});
@@ -46,22 +44,33 @@ export default function Noticias() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [taxasRes, moedasRes] = await Promise.all([
-          fetch("https://brasilapi.com.br/api/taxas/v1"),
-          fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL")
-        ]);
+
+        const taxasPromise = fetch("/brasilapi/api/taxas/v1");
+        const moedasPromise = fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/brl.json");
+
+        const [taxasRes, moedasRes] = await Promise.all([taxasPromise, moedasPromise]);
 
         const taxasData = await taxasRes.json();
         const moedasData = await moedasRes.json();
 
         const filtradas = taxasData.filter(t => ["Selic", "CDI", "IPCA"].includes(t.nome));
         setTaxas(filtradas);
-
+        const rates = moedasData.brl;
         setMoedas({
-          USD: moedasData.USDBRL,
-          EUR: moedasData.EURBRL,
-          BTC: moedasData.BTCBRL,
+          USD: { 
+            name: 'Dólar Americano/Real', 
+            ask: (1 / rates.usd).toFixed(2) 
+          },
+          EUR: { 
+            name: 'Euro/Real', 
+            ask: (1 / rates.eur).toFixed(2) 
+          },
+          BTC: { 
+            name: 'Bitcoin/Real',
+            ask: (1 / rates.btc).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+          },
         });
+
       } catch (error) {
         console.error("Erro ao buscar dados económicos:", error);
       } finally {
@@ -80,7 +89,7 @@ export default function Noticias() {
     <FadeInSection>
       <div className="page-container">
         <div className="noticias-container">
-          <h2>Indicadores Econômicos</h2>
+          <h2>Indicadores Económicos</h2>
           <p>Acompanhe os principais indicadores que influenciam o mercado e o seu negócio.</p>
           
           <table className="indicators-table">
@@ -101,6 +110,7 @@ export default function Noticias() {
           </table>
 
           <h2 style={{ marginTop: '3rem' }}>Cotações de Moedas</h2>
+          <p>Acompanhe as cotações das principais moedas em relação ao Real.</p>
           <table className="indicators-table">
             <thead>
               <tr>
@@ -110,10 +120,12 @@ export default function Noticias() {
             </thead>
             <tbody>
               {Object.entries(moedas).map(([sigla, m]) => (
-                <tr key={sigla}>
-                  <td>{m.name}</td>
-                  <td>R$ {parseFloat(m.ask).toFixed(2)}</td>
-                </tr>
+                m && m.name && m.ask ? (
+                  <tr key={sigla}>
+                    <td>{m.name}</td>
+                    <td>R$ {m.ask}</td>
+                  </tr>
+                ) : null
               ))}
             </tbody>
           </table>
