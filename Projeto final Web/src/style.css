@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-
 
 * {
   box-sizing: border-box;
@@ -10,52 +6,44 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #f4f6fa;
+  background-color: #001f4e;
   color: #333;
   padding: 0;
-  background-color: #001f4e;
 }
-
 
 main {
   padding-top: 100px; 
   padding-bottom: 100px; 
 }
 
-
-
-header {
+header, footer {
     background: rgba(0, 31, 78, 0.75); 
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
     color: white;
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-footer {
-    background-color: rgba(0, 31, 78, 0.75); 
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-    width: 100%;
-    bottom: 0;
+header {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: fixed;
+    top: 0;
     left: 0;
-    z-index: 1000;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
 }
 
+footer {
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
 
 /* Navegação */
 nav {
@@ -115,8 +103,7 @@ h2 {
 .fade-exit { opacity: 1; }
 .fade-exit-active { opacity: 0; transition: opacity 500ms; }
 
-
-/* Estilo das páginas ) */
+/* Estilo das páginas */
 .page-container {
     display: flex;
     justify-content: center;
@@ -148,8 +135,7 @@ h2 {
 .mvv-section {
     display: flex;
     gap: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin: 3rem 0;
 }
 
 .mvv-card {
@@ -197,7 +183,11 @@ h2 {
 }
 
 /* Serviços */
-.services-container > p {
+.services-container > p,
+.noticias-container > p,
+.form-container > p,
+.contact-container > p,
+.location-container > p {
     text-align: center;
     margin-bottom: 2.5rem;
     color: #555;
@@ -236,13 +226,6 @@ h2 {
 }
 
 /* Notícias */
-.noticias-container > p {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    color: #555;
-    font-size: 1.1rem;
-}
-
 .indicators-table {
     width: 100%;
     border-collapse: collapse;
@@ -282,17 +265,6 @@ h2 {
 }
 
 /* Formulário */
-.form-container, .contact-container {
-    max-width: 700px; 
-}
-
-.form-container > p, .contact-container > p {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #555;
-    font-size: 1.1rem;
-}
-
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -379,7 +351,6 @@ form button:hover {
 .contact-card.whatsapp { background-color: #25D366; }
 .contact-card.email { background-color: #777; }
 .contact-card.instagram {
-    background: #d6249f;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
 }
 
@@ -394,16 +365,9 @@ form button:hover {
     margin-bottom: 2rem;
 }
 
-
 /*Localização */
 .location-container {
     text-align: center;
-}
-
-.location-container > p {
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    color: #555;
 }
 
 .address-box {
@@ -429,58 +393,7 @@ form button:hover {
 }
 
 
-/*Home */
-.home-container {
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png');
-  background-color: #f4f6fa;
-  padding: 6rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.home-texto {
-  max-width: 900px;
-  width: 100%;
-  background: white;
-  padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.home-texto h1 {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 2rem;
-  color: #001f4e;
-}
-
-.home-texto p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-.home-texto strong {
-  color: #001f4e;
-  font-weight: 700;
-}
-
-.home-texto .home-final-phrase {
-  font-size: 1.3rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 2.5rem;
-  color: #001f4e;
-  background-color: rgba(0, 191, 255, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-/* Sobre*/
+/* Home*/
 .sobre-nos-overlay {
   position: relative;
   padding: 0;
@@ -530,7 +443,6 @@ form button:hover {
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-size: 3rem;
-  text-shadow: 2px 2px 8px rgba(254, 254, 254, 0.7);
 }
 
 .sobre-texto-content-overlay h1 {
@@ -571,7 +483,6 @@ form button:hover {
   left: 0;
   top: 2px;
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
