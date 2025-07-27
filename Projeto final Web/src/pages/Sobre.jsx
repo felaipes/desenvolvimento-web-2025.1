@@ -1,25 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { FaWhatsapp, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import imagem from "../assets/Muniz.png.jpg";
 
-
-import './style.css';
-import logo from './assets/logo.png';
-
-
-import Home from './pages/Home';
- import Sobre from './pages/Sobre';
- import Servicos from './pages/Servicos';
- import Empresa from './pages/Empresa';
- import Noticias from './pages/Noticias';
- import Certificados from './pages/Certificados';
- import Localizacao from './pages/Localizacao';
- import Contato from './pages/Contato';
-
-
-
-export const FadeInSection = ({ children }) => {
+const FadeInSection = ({ children, delay = 0 }) => {
   const [isVisible, setVisible] = React.useState(false);
   const domRef = React.useRef();
 
@@ -31,7 +13,7 @@ export const FadeInSection = ({ children }) => {
           observer.unobserve(domRef.current);
         }
       });
-    });
+    }, { threshold: 0.1 });
 
     const { current } = domRef;
     if (current) {
@@ -49,6 +31,7 @@ export const FadeInSection = ({ children }) => {
     <div
       className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
       ref={domRef}
+      style={{ transitionDelay: `${delay}ms` }} 
     >
       {children}
     </div>
@@ -56,105 +39,41 @@ export const FadeInSection = ({ children }) => {
 };
 
 
-const Home = () => (
-  <div className="home-container">
-    <FadeInSection>
-      <div className="home-texto">
-        <h1>Soluções que Impulsionam o seu Negócio</h1>
-        <p>Na <strong>Muniz Assessoria</strong>, transformamos desafios em oportunidades com estratégias contábeis e empresariais personalizadas.</p>
-        <p>Vamos crescer juntos?</p>
+export default function Sobre() {
+  return (
+    <section className="sobre-nos-overlay">
+      <div className="sobre-imagem-background">
+        <img src={imagem} alt="Fundo da seção Sobre Nós" />
       </div>
-    </FadeInSection>
-  </div>
-);
-const Sobre = () => (
-    <FadeInSection>
-        <section className="sobre-nos">
-            <div className="sobre-container">
-                <img src="https://placehold.co/400x500/001f4e/ffffff?text=Muniz" alt="Equipe Muniz Assessoria" className="sobre-imagem" />
-                <div className="sobre-texto">
-                    <h3>Quem Somos</h3>
-                    <h1>Excelência e Confiança</h1>
-                    <p>Com anos de experiência, nossa missão é fornecer um serviço de excelência, pautado pela ética e compromisso.</p>
-                    <ul>
-                        <li>Consultoria Contábil e Fiscal</li>
-                        <li>Planejamento Tributário</li>
-                        <li>Abertura de Empresas</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </FadeInSection>
-);
-const Certificados = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Certificados</h1></FadeInSection></div>;
-const Servicos = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Serviços</h1></FadeInSection></div>;
-const Empresa = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página da Empresa</h1></FadeInSection></div>;
-const Noticias = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Notícias</h1></FadeInSection></div>;
-const Localizacao = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Localização</h1></FadeInSection></div>;
-const Contato = () => <div style={{padding: '4rem 2rem'}}><FadeInSection><h1>Página de Contato</h1></FadeInSection></div>;
-
-
-// --- Componente que gerencia as rotas e transições ---
-const AnimatedRoutes = () => {
-  const location = useLocation();
-  return (
-    <TransitionGroup>
-      <CSSTransition
-        key={location.key}
-        timeout={500}
-        classNames="fade"
-      >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/servicos" element={<Servicos />} />
-          <Route path="/empresa" element={<Empresa />} />
-          <Route path="/noticias" element={<Noticias />} />
-          <Route path="/certificados" element={<Certificados />} />
-          <Route path="/localizacao" element={<Localizacao />} />
-          <Route path="/contato" element={<Contato />} />
-        </Routes>
-      </CSSTransition>
-    </TransitionGroup>
-  );
-};
-
-
-export default function App() {
-  return (
-    <Router>
-      <header>
-        <img src={logo} alt="Logo Muniz" style={{ height: '60px' }} />
-        <nav>
-          <Link to="/">Início</Link>
-          <Link to="/sobre">Sobre</Link>
-          <Link to="/servicos">Serviços</Link>
-          <Link to="/empresa">Empresa</Link>
-          <Link to="/noticias">Noticias</Link>
-          <Link to="/certificados">Certificados</Link>
-          <Link to="/localizacao">Localização</Link>
-          <Link to="/contato">Contato</Link>
-        </nav>
-      </header>
-
-      <main>
-        <AnimatedRoutes />
-      </main>
-
-      <footer>
-        <p>© Muniz Assessoria Empresarial</p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', fontSize: '24px', marginTop: '0.5rem' }}>
-          <a href="https://wa.me/5588999164850" target="_blank" rel="noreferrer" style={{ color: 'white' }}>
-            <FaWhatsapp />
-          </a>
-          <a href="mailto:douglascmuniz@gmail.com" target="_blank" rel="noreferrer" style={{ color: 'white' }}>
-            <FaEnvelope />
-          </a>
-          <a href="https://instagram.com/muniz.as" target="_blank" rel="noreferrer" style={{ color: 'white' }}>
-            <FaInstagram />
-          </a>
-        </div>
-      </footer>
-    </Router>
+      
+     
+      <div className="sobre-texto-content-overlay">
+        <FadeInSection delay={0}>
+          <h3>Muniz Assesoria</h3>
+        </FadeInSection>
+        <FadeInSection delay={200}>
+          <h1>Compromisso com a excelência em soluções contábeis.</h1>
+        </FadeInSection>
+        <FadeInSection delay={200}>
+          <p>
+            Com anos de experiência no mercado, oferecemos soluções personalizadas para empresas de todos os portes,
+            ajudando nossos clientes a alcançar suas metas financeiras e a manter a conformidade com a legislação vigente.
+          </p>
+        </FadeInSection>
+        <FadeInSection delay={800}>
+          <ul>
+            <li><strong>Equipe Qualificada:</strong> Profissionais capacitados e atualizados.</li>
+            <li><strong>Transparência e Confiabilidade:</strong> Atuação com ética e clareza.</li>
+            <li><strong>Inovação Contínua:</strong> Uso de tecnologia para otimizar processos.</li>
+            <li><strong>Parceria Estratégica:</strong> Somos parceiros no crescimento do seu negócio.</li>
+          </ul>
+        </FadeInSection>
+        <FadeInSection delay={400}>
+          <p>
+            Nossa abordagem é centrada no cliente, garantindo um atendimento próximo e dedicado a entender as particularidades de cada empresa.
+          </p>
+        </FadeInSection>
+      </div>
+    </section>
   );
 }
