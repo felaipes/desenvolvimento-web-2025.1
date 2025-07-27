@@ -1,6 +1,5 @@
 import React from 'react';
 
-// O componente de animação foi movido para cá para resolver o erro de importação.
 const FadeInSection = ({ children }) => {
   const [isVisible, setVisible] = React.useState(false);
   const domRef = React.useRef();
