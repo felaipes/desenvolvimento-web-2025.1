@@ -59,28 +59,9 @@ export default function Contato() {
               <span>Instagram</span>
             </a>
           </div>
-
-          <div className="contact-form-section">
-            <h3>Ou envie uma mensagem</h3>
-
-           <form>
-              <div className="form-group">
-                <label>Seu Nome:</label>
-                <input type="text" placeholder="Digite seu nome completo" required />
-              </div>
-              <div className="form-group">
-                <label>Seu E-mail:</label>
-                <input type="email" placeholder="exemplo@email.com" required />
-              </div>
-              <div className="form-group">
-                <label>Sua Mensagem:</label>
-                <textarea rows="6" placeholder="Escreva sua dúvida ou solicitação aqui..." required></textarea>
-              </div>
-              <button type="submit">Enviar Mensagem</button>
-            </form>
+         
           </div>
         </div>
-      </div>
     </FadeInSection>
   );
 }
