@@ -39,7 +39,7 @@ const FadeInSection = ({ children, delay = 0 }) => {
 };
 
 
-export default function Sobre() {
+export default function Home() {
   return (
     <section className="sobre-nos-overlay">
       <div className="sobre-imagem-background">
