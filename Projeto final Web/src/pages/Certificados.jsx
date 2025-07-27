@@ -24,11 +24,7 @@ export default function Certificados() {
                         <label>Tipo de Certificado:</label>
                         <select required>
                             <option value="">Selecione o tipo</option>
-                            <option value="e-CPF A1">e-CPF A1</option>
-                            <option value="e-CPF A3">e-CPF A3</option>
-                            <option value="e-CNPJ A1">e-CNPJ A1</option>
-                            <option value="e-CNPJ A3">e-CNPJ A3</option>
-                            <option value="NF-e">NF-e</option>
+                            <option value="A1">e-CNPJ A1</option>
                         </select>
                     </div>
                     <button type="submit">Solicitar Contato</button>
