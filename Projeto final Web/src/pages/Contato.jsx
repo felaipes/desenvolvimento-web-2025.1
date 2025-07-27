@@ -63,7 +63,7 @@ export default function Contato() {
           <div className="contact-form-section">
             <h3>Ou envie uma mensagem</h3>
 
-            <form>
+           <form>
               <div className="form-group">
                 <label>Seu Nome:</label>
                 <input type="text" placeholder="Digite seu nome completo" required />
