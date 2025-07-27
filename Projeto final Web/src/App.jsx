@@ -3,12 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { FaWhatsapp, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
-// Importando o seu CSS e a sua logo
 import './style.css';
 import logo from './assets/logo.png';
 
-// --- Importando os componentes de cada página ---
-// (Certifique-se que os caminhos para os arquivos estão corretos)
 import Home from './pages/Home';
 import Sobre from './pages/Sobre';
 import Servicos from './pages/Servicos';
@@ -18,7 +15,6 @@ import Certificados from './pages/Certificados';
 import Localizacao from './pages/Localizacao';
 import Contato from './pages/Contato';
 
-// --- Componente que gerencia as rotas e transições ---
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (
@@ -29,7 +25,6 @@ const AnimatedRoutes = () => {
         classNames="fade"
       >
         <Routes location={location}>
-          <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/empresa" element={<Empresa />} />
@@ -44,15 +39,13 @@ const AnimatedRoutes = () => {
 };
 
 
-// --- Componente Principal da Aplicação ---
 export default function App() {
   return (
     <Router>
       <header>
         <img src={logo} alt="Logo Muniz" style={{ height: '60px' }} />
         <nav>
-          <Link to="/">Início</Link>
-          <Link to="/sobre">Sobre</Link>
+          <Link to="/sobre">Inicio</Link>
           <Link to="/servicos">Serviços</Link>
           <Link to="/empresa">Empresa</Link>
           <Link to="/noticias">Cotações</Link>
