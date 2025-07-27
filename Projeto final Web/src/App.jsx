@@ -5,9 +5,7 @@ import { FaWhatsapp, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
 import './style.css';
 import logo from './assets/logo.png';
-
 import Home from './pages/Home';
-import Sobre from './pages/Sobre';
 import Servicos from './pages/Servicos';
 import Empresa from './pages/Empresa';
 import Noticias from './pages/Noticias';
@@ -25,7 +23,7 @@ const AnimatedRoutes = () => {
         classNames="fade"
       >
         <Routes location={location}>
-          <Route path="/sobre" element={<Sobre />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/empresa" element={<Empresa />} />
           <Route path="/noticias" element={<Noticias />} />
@@ -45,7 +43,7 @@ export default function App() {
       <header>
         <img src={logo} alt="Logo Muniz" style={{ height: '60px' }} />
         <nav>
-          <Link to="/sobre">Inicio</Link>
+          <Link to="/home">Inicio</Link>
           <Link to="/servicos">Serviços</Link>
           <Link to="/empresa">Empresa</Link>
           <Link to="/noticias">Cotações</Link>
